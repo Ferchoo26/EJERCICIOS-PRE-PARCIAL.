@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+int sumaCubos(int n) {
+    int suma = 0;
+    while (n > 0) {
+        int digito = n % 10;
+        suma += digito * digito * digito;
+        n /= 10;
+    }
+    return suma;
+}
+
+
+bool estaEnArreglo(int n, const vector<int>& valores) {
+    for (int val : valores) {
+        if (val == n) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool esCubifinito(int n, vector<int>& valores) {
+    while (true) {
+        int siguiente = sumaCubos(n);
+        valores.push_back(siguiente);
+        if (siguiente == 1) return true; 
+        if (estaEnArreglo(siguiente, valores)) return false; 
+        n = siguiente; 
+    }
+}
+
+int main() {
+    int n;
+    while (cin >> n && n != 0) {
+        vector<int> valores(1, n);
+        if (n == 1) {
+            cout << "1 -> cubifinito" << endl;
+            continue;
+        }
+        if (esCubifinito(n, valores)) {
+            for (size_t i = 0; i < valores.size(); i++) {
+                if (i > 0) cout << " - ";
+                cout << valores[i];
+            }
+            cout << " -> cubifinito" << endl;
+        } else {
+            for (size_t i = 0; i < valores.size() - 1; i++) {
+                if (i > 0) cout << " - ";
+                cout << valores[i];
+            }
+            cout << " -> no cubifinito" << endl;
+        }
+    }
+    return 0;
+}
