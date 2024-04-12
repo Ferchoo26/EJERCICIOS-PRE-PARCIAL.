@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int cantidadCortezas;  
+    cin >> cantidadCortezas;  
+
+    vector<int> cortezas(cantidadCortezas);  
+
+    for (int i = 0; i < cantidadCortezas; i++) {
+        cin >> cortezas[i];  
+    }
+
+    
+    for (int i = 0; i < cantidadCortezas - 1; i++) {  
+        int sumaDerecha = 0;  
+        for (int j = i + 1; j < cantidadCortezas; j++) {
+            sumaDerecha += cortezas[j];  
+        }
+
+        if (cortezas[i] == sumaDerecha) {  
+            cout << "SI " << i + 1 << endl;  
+            return 0;
+        }
+    }
+
+    cout << "NO" << endl; 
+    return 0;
+}
