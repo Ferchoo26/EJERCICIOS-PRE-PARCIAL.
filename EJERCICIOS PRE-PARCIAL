@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+void parqueadero() {
+    int cantidadcasos;
+    cin >> cantidadcasos;
+
+    for (int contadorcasos = 0; contadorcasos < cantidadcasos; contadorcasos++) {
+        cout << "Caso " << contadorcasos + 1 << ":" << endl;
+
+        int cantidadpersonas;
+        cin >> cantidadpersonas;
+
+        int arregloparquedero[cantidadpersonas]; 
+
+        for (int contador = 0; contador < cantidadpersonas; contador++) {
+            int dato;
+            cin >> dato;
+            if (dato <= 1000 && dato > 0) {
+                arregloparquedero[contador] = dato;
+            }
+        }
+
+        
+        int contadorlongitud = 0;
+        for (int i = 0; i < cantidadpersonas; i++) {
+            int pivote = arregloparquedero[i];
+            for (int j = i + 1; j < cantidadpersonas; j++) {
+                if (pivote > arregloparquedero[j]) {
+                    contadorlongitud++;
+                    break;
+                }
+            }
+        }
+
+        cout << "Casos sin orden: " << contadorlongitud << endl;
+    }
+}
+
+int main() {
+    parqueadero();
+    return 0;
+}
